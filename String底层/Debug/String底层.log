@@ -1,4 +1,0 @@
-﻿  test.cpp
-D:\C\code\test.c\String底层\String底层\test.cpp(12,9): warning C4477: “printf”: 格式字符串“%d”需要类型“int”的参数，但可变参数 1 拥有了类型“char **”
-D:\C\code\test.c\String底层\String底层\test.cpp(12,9): warning C4477: “printf”: 格式字符串“%d”需要类型“int”的参数，但可变参数 2 拥有了类型“char **”
-  String底层.vcxproj -> D:\C\code\test.c\String底层\Debug\String底层.exe
