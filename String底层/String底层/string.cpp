@@ -142,7 +142,24 @@ namespace bit
 		_str[pos] = ch;
 		_size++;
 	}
-	void insert(size_t pos, const char* str);
+	void string::insert(size_t pos, const char* str)
+	{
+		int gap = strlen(str);
+		if (_size + gap > _capacity)
+		{
+			int len = _size + gap;
+			reserve(len);
+		}
+		//[0,1,..pos,pos+1,..._size-1]_size
+		for (int i = _size;i>=(int)pos; --i)
+		{
+			_str[i + gap] = _str[i];
+		}
+		for (int i = 0; i < gap; ++i)
+		{
+			_str[pos + i] = *(str + i);
+		}
+	}
 	/*string& operator+=(char ch);
 	string& operator+=(const char* str);
 

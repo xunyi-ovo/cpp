@@ -8,7 +8,7 @@ namespace bit
 	void test_string1()
 	{
 		string a = "hello";
-		a.insert(0, '1');
+		a.insert(0,"fuck");
 		cout << a.c_str();
 		return;
 	}

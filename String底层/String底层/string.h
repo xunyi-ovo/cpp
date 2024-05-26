@@ -39,7 +39,7 @@ namespace bit
 		string& operator+=(const string& s);
 
 		void insert(size_t pos, char ch);
-		//void insert(size_t pos, const char* str);
+		void insert(size_t pos, const char* str);
 	};
 }
 
