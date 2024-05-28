@@ -159,10 +159,6 @@ namespace bit
 		{
 			_str[pos + i] = *(str + i);
 		}
+		_size += gap;
 	}
-	/*string& operator+=(char ch);
-	string& operator+=(const char* str);
-
-	void insert(size_t pos, char ch);
-	void insert(size_t pos, const char* str);*/
 }

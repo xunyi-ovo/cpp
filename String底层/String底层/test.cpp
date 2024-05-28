@@ -9,6 +9,7 @@ namespace bit
 	{
 		string a = "hello";
 		a.insert(0,"fuck");
+		a.insert(3,"you");
 		cout << a.c_str();
 		return;
 	}
