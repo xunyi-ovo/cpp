@@ -161,4 +161,38 @@ namespace bit
 		}
 		_size += gap;
 	}
+
+	void string::eraser(size_t pos, int n)
+	{
+		if (n >= _size - pos)
+		{
+			_str[pos] = '\0';
+			_size = pos;
+		}
+		else
+		{
+			int i = 0;
+			for (i = pos + n; i < _size + 1; ++i)
+			{
+				_str[i - n] = _str[i];
+			}
+			_size -= n;
+		}
+	}
+	size_t string::find(int pos, char ch)
+	{
+		for (int i = pos; i < _size; ++i)
+		{
+			if (_str[i] == ch)
+				return i;
+		}
+		return -1;
+	}
+
+	size_t find(int pos = 0, const char* s)
+	{
+
+	}
+
+
 }

@@ -1,4 +1,3 @@
-#define _CRT_SECURE_NO_WARNINGS 1
 #include <string>
 #include <iostream>
 #include "string.h"
@@ -7,9 +6,8 @@ namespace bit
 {
 	void test_string1()
 	{
-		string a = "hello";
-		a.insert(0,"fuck");
-		a.insert(3,"you");
+		string a = "abcdef";
+		a.eraser(2,1);
 		cout << a.c_str();
 		return;
 	}

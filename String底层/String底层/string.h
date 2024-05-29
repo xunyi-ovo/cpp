@@ -40,6 +40,10 @@ namespace bit
 
 		void insert(size_t pos, char ch);
 		void insert(size_t pos, const char* str);
+		void eraser(size_t pos, int n = npos);
+
+		size_t find(int pos = 0, char ch);
+		size_t find(int pos = 0,const char* s);
 	};
 }
 
