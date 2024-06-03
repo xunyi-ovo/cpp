@@ -12,8 +12,8 @@ namespace bit
 	string::string(const string& b):
 		_size(b.size())
 	{
-		_str = new char[_size + 1];
-		_capacity = _size;
+		_str = new char[_capacity + 1];
+		_capacity = b._capacity;
 		strcpy(_str, b.c_str());
 	}
 	string::~string()
@@ -61,10 +61,15 @@ namespace bit
 	}
 	string& string::operator=(const string& a)
 	{
-		delete[]_str;
-		_size =_capacity =  a._size;
-		_str = new char[_capacity + 1];
-		strcpy(_str, a._str);
+		if (this != &a)
+		{
+			char* tmp = new char[a._capacity + 1];
+			strcpy(tmp, a.c_str());
+			delete[]_str;
+			_str = tmp;
+			_size = a._size;
+			_capacity = a._capacity;
+		}
 		return *this;
 	}
 	void string::reverse()
@@ -147,7 +152,7 @@ namespace bit
 		int gap = strlen(str);
 		if (_size + gap > _capacity)
 		{
-			int len = _size + gap;
+			size_t len = _size + gap;
 			reserve(len);
 		}
 		//[0,1,..pos,pos+1,..._size-1]_size
@@ -179,7 +184,7 @@ namespace bit
 			_size -= n;
 		}
 	}
-	size_t string::find(int pos, char ch)
+	size_t string::find(char ch,int pos)const
 	{
 		for (int i = pos; i < _size; ++i)
 		{
@@ -189,9 +194,75 @@ namespace bit
 		return -1;
 	}
 
-	size_t find(int pos = 0, const char* s)
+	size_t string::find(const char* s, int pos)const
 	{
+		for (int i = 0; strlen(s) <= _size - i; ++i)
+		{
+			int record = i, tmp = i;
+			for (int j = 0; j < strlen(s); ++j)
+			{
+				if (_str[tmp] == s[j])
+				{
+					++tmp;
+					if (s[j + 1] == '\0')
+					{
+						return record;
+					}
+				}
+				else
+				{
+					break;
+				}
+			}
+		}
+		return -1;
+	}
+	void string::swap(string& s)
+	{
+		std::swap(_str, s._str);
+		std::swap(_size, s._size);
+		std::swap(_capacity, s._capacity);
+	}
+	string string::substr(size_t pos, size_t len)const
+	{
+		if (len >= _size - pos)
+		{
+			//hello
+			string sub(_str + pos);
+			return sub;
+		}
+		else
+		{
+			string sub;
+			sub.reserve(len);
+			for (int i = pos; i < pos + len; ++i)
+			{
+				sub += _str[i];
+			}
+			return sub;
+		}
+	}
+	void string::clear()
+	{
+		_str[0] = '\0';
+		_size = 0;
+	}
 
+	ostream& operator<<(ostream& out, const string& s)
+	{
+		out << s.c_str();
+		return out;
+	}
+	istream& operator>>(istream& in, string& s)
+	{
+		s.clear();
+		char ch = in.get();
+		while (ch != ' ' && ch != '\n')
+		{
+			s += ch;
+			ch = in.get();
+		}
+		return in;
 	}
 
 

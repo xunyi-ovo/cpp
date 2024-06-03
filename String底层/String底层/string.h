@@ -30,9 +30,12 @@ namespace bit
 
 		void reverse();
 		void reserve(size_t n);
+		void swap(string& s);
+		void clear();
 
 		void push_back(char ch);
 		void append(const char* str);
+		string substr(size_t pos=0, size_t len = npos)const;
 
 		string& operator+=(char ch);
 		string& operator+=(const char* str);
@@ -42,9 +45,11 @@ namespace bit
 		void insert(size_t pos, const char* str);
 		void eraser(size_t pos, int n = npos);
 
-		size_t find(int pos = 0, char ch);
-		size_t find(int pos = 0,const char* s);
+		size_t find(char ch, int pos = 0)const;
+		size_t find(const char* s, int pos = 0)const;
 	};
+	ostream& operator<<(ostream& out, const string& s);
+	istream& operator>>(istream& in, string& s);
 }
 
 
