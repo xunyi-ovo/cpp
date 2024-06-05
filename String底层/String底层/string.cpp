@@ -9,12 +9,17 @@ namespace bit
 		strcpy(_str, str);
 		_capacity = _size;
 	}
-	string::string(const string& b):
-		_size(b.size())
+	/*string::string(const string& s):
+		_size(s.size())
 	{
 		_str = new char[_capacity + 1];
-		_capacity = b._capacity;
-		strcpy(_str, b.c_str());
+		_capacity = s._capacity;
+		strcpy(_str, .c_str());
+	}*/
+	string::string(const string& s)
+	{
+		string tmp(s.c_str());
+		swap(tmp);
 	}
 	string::~string()
 	{
@@ -59,17 +64,24 @@ namespace bit
 	{
 		return _str + _size;
 	}
-	string& string::operator=(const string& a)
+	//string& string::operator=(const string& a)
+	//{
+	//	if (this != &a)
+	//	{
+	//		/*char* tmp = new char[a._capacity + 1];
+	//		strcpy(tmp, a.c_str());
+	//		delete[]_str;
+	//		_str = tmp;
+	//		_size = a._size;
+	//		_capacity = a._capacity;*/
+	//		string tmp(a.c_str());
+	//		swap(tmp);
+	//	}
+	//	return *this;
+	//}
+	string& string::operator=(string tmp)
 	{
-		if (this != &a)
-		{
-			char* tmp = new char[a._capacity + 1];
-			strcpy(tmp, a.c_str());
-			delete[]_str;
-			_str = tmp;
-			_size = a._size;
-			_capacity = a._capacity;
-		}
+		swap(tmp);
 		return *this;
 	}
 	void string::reverse()
@@ -248,22 +260,65 @@ namespace bit
 		_size = 0;
 	}
 
-	ostream& operator<<(ostream& out, const string& s)
+	ostream& operator<<(ostream& out, const string& s)//流插入
 	{
 		out << s.c_str();
 		return out;
 	}
-	istream& operator>>(istream& in, string& s)
+	istream& operator>>(istream& in, string& s)//流提取
 	{
 		s.clear();
-		char ch = in.get();
-		while (ch != ' ' && ch != '\n')
+		char buff[128];
+		int i = 0;
+		char ch =in.get();
+		while (ch != ' '&& ch!='\n')
 		{
-			s += ch;
+			buff[i++] = ch;
+			if (i == 127)
+			{
+				buff[i] = '\0';
+				s += buff;
+				i = 0;
+			}
 			ch = in.get();
 		}
+		if (i != 0)
+		{
+			buff[i] = '\0';
+			s += buff;
+		}//相比一个字符一个字符+= ，没有那么频繁的扩容
 		return in;
 	}
+	string string::operator+(const string& s)const
+	{
+		string a(*this);
+		a.append(s.c_str());
+		return a;
+	}
+	bool string::operator==(const string& s)const
+	{
+		return strcmp(_str, s.c_str()) == 0;
+	}
+	bool string::operator<(const string& s)const
+	{
+		return strcmp(_str, s.c_str())<0;
+	}
+	bool string::operator<=(const string& s)const
+	{
+		return *this < s || *this == s;
+	}
+	bool string::operator>(const string& s)const
+	{
+		return !(*this <= s);
+	}
+	bool string::operator>=(const string& s)const
+	{
+		return *this > s || *this == s;
+	}
 
+	bool string::operator!=(const string& s)const
+	{
+		return !(*this == s);
+	}
 
 }

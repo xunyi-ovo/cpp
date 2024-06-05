@@ -15,7 +15,8 @@ namespace bit
 	public:
 		string(const char* str = "");
 		string(const string& b);
-		string& operator=(const string& a);
+		/*string& operator=(const string& a);*/
+		string& operator=(string tmp);
 		~string();
 		const char* c_str()const;
 		size_t size()const;
@@ -40,6 +41,14 @@ namespace bit
 		string& operator+=(char ch);
 		string& operator+=(const char* str);
 		string& operator+=(const string& s);
+		/*string operator+(const string& s)const;*/
+		bool operator<(const string& s)const;
+		bool operator<=(const string& s)const;
+		bool operator>(const string& s)const;
+		bool operator>=(const string& s)const;
+		bool operator==(const string& s)const;
+		bool operator!=(const string& s)const;
+		string operator+(const string& s)const;
 
 		void insert(size_t pos, char ch);
 		void insert(size_t pos, const char* str);
