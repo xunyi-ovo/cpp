@@ -8,9 +8,8 @@ namespace bit
 {
 	void test_string1()
 	{
-		string a = "hello ";
-		string b = a;
-		cout << b;
+		string("xunyi");
+
 	}
 }
 
