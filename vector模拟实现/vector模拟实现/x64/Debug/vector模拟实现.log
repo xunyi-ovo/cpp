@@ -1,2 +1,24 @@
-﻿  vector.cpp
+﻿  test.cpp
+D:\C\gitee\cpp\vector模拟实现\vector模拟实现\vector.h(38,19): warning C4244: “return”: 从“__int64”转换到“int”，可能丢失数据
+  (编译源文件“test.cpp”)
+  D:\C\gitee\cpp\vector模拟实现\vector模拟实现\vector.h(38,19):
+  模板实例化上下文(最早的实例化上下文)为
+  	D:\C\gitee\cpp\vector模拟实现\vector模拟实现\test.cpp(6,15):
+  	查看对正在编译的 类 模板 实例化“bit::vector<int>”的引用
+  	D:\C\gitee\cpp\vector模拟实现\vector模拟实现\vector.h(36,7):
+  	在编译 类 模板 成员函数“int bit::vector<int>::size(void)”时
+  		D:\C\gitee\cpp\vector模拟实现\vector模拟实现\test.cpp(12,3):
+  		请参阅 "bit::test" 中对 "bit::vector<int>::size" 的第一个引用
+  
+D:\C\gitee\cpp\vector模拟实现\vector模拟实现\vector.h(34,27): warning C4244: “return”: 从“__int64”转换到“int”，可能丢失数据
+  (编译源文件“test.cpp”)
+  D:\C\gitee\cpp\vector模拟实现\vector模拟实现\vector.h(34,27):
+  模板实例化上下文(最早的实例化上下文)为
+  	D:\C\gitee\cpp\vector模拟实现\vector模拟实现\vector.h(32,7):
+  	在编译 类 模板 成员函数“int bit::vector<int>::capacity(void)”时
+  		D:\C\gitee\cpp\vector模拟实现\vector模拟实现\vector.h(61,22):
+  		请参阅 "bit::vector<int>::push_back" 中对 "bit::vector<int>::capacity" 的第一个引用
+  		D:\C\gitee\cpp\vector模拟实现\vector模拟实现\test.cpp(7,14):
+  		请参阅 "bit::test" 中对 "bit::vector<int>::push_back" 的第一个引用
+  
   vector模拟实现.vcxproj -> D:\C\gitee\cpp\vector模拟实现\x64\Debug\vector模拟实现.exe
