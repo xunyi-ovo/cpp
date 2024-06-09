@@ -7,12 +7,24 @@ namespace bit
 		v.push_back(1);
 		v.push_back(3);
 		v.push_back(5);
+		v.pop_back();
 		v.push_back(7);
 		v.push_back(9);
-		for (int i = 0; i < v.size(); ++i)
+		for (auto& e : v)
 		{
-			cout << v[i] << endl;
+			cout << e << " ";
 		}
+		cout << endl;
+		v.insert(v.begin(), 0);
+		v.insert(v.begin(), 0);
+		
+		for (auto& e : v)
+		{
+			cout << e << " ";
+		}
+		cout << endl;
+
+	
 	}
 }
 

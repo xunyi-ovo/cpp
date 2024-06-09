@@ -10,12 +10,16 @@ namespace bit
 	template<class T>
 	class vector
 	{
-	private:
-		typedef T* iterator;
-		iterator _start;
-		iterator _finish;
-		iterator _end_of_storage;
 	public:
+		~vector()
+		{
+			if (_start)
+			{
+				delete[]_start;
+				_start = _end_of_storage = _finish = nullptr;
+			}
+		}
+		typedef T* iterator;
 		iterator begin()
 		{
 			return _start;
@@ -56,14 +60,52 @@ namespace bit
 		}
 		void push_back(const T& d)
 		{
-			if (_start == _finish)
+			/*if (_end_of_storage == _finish)
 			{
 				int new_capacity = capacity() == 0 ? 4 : capacity() * 2;
 				reserve(new_capacity);
 			}
 			*_finish = d;
-			++_finish;
+			++_finish;*/
+			//¸´ÓÃ
+			insert(_finish, d);
 		}
+		void pop_back()
+		{
+			assert(size() > 0);
+			--_finish;
+		}
+		iterator insert(iterator pos, const T& d)
+		{
+			assert(pos >= _start && pos <= _finish);
+			if (_finish == _end_of_storage)
+			{
+				int gap = pos - _start;
+				int new_capacity = capacity() ==0 ? 4 : capacity() * 2;
+				reserve(new_capacity);
+				pos = _start + gap;
+			}
+			for (iterator t = _finish;t>pos; --t)
+			{
+				*t = *(t-1);
+			}
+			*pos = d;
+			++_finish;
+			return pos;
+		}
+		void erase(iterator pos)
+		{
+			assert(pos >= _start && pos < _finish);
+			for (iterator t = pos;t<end(); ++t)
+			{
+				*t = *(t + 1);
+			}
+			--_finish;
+		}
+	private:
+		iterator _start = nullptr;
+		iterator _finish = nullptr;
+		iterator _end_of_storage = nullptr;
 
 	};
 }
