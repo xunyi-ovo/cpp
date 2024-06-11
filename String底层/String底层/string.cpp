@@ -9,12 +9,12 @@ namespace bit
 		strcpy(_str, str);
 		_capacity = _size;
 	}
-	/*string::string(const string& s):
-		_size(s.size())
+	/*string::string(const string& s)
 	{
-		_str = new char[_capacity + 1];
+		_size = s.size();
+		_str = new char[s._capacity + 1];
 		_capacity = s._capacity;
-		strcpy(_str, .c_str());
+		strcpy(_str, s.c_str());
 	}*/
 	string::string(const string& s)
 	{
