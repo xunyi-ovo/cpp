@@ -28,16 +28,16 @@ namespace bit
 		{
 			return _finish;
 		}
-		T& operator[](size_t i)
+		const T& operator[](size_t i)const
 		{
 			assert(i < size());
 			return *(_start + i);
 		}
-		int capacity()
+		int capacity()const
 		{
 			return _end_of_storage - _start;
 		}
-		int size()
+		int size()const
 		{
 			return _finish - _start;
 		}
@@ -91,11 +91,12 @@ namespace bit
 			}
 			*pos = d;
 			++_finish;
-			return pos;
+			return pos;//·µ»ØÐÂµÄpos
 		}
 		void erase(iterator pos)
 		{
 			assert(pos >= _start && pos < _finish);
+			iterator re = ++pos;
 			for (iterator t = pos;t<end(); ++t)
 			{
 				*t = *(t + 1);
