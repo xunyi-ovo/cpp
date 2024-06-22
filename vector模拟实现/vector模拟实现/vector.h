@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <list>
 #include <assert.h>
 #include <algorithm>
 using namespace std;
@@ -19,12 +20,75 @@ namespace bit
 				_start = _end_of_storage = _finish = nullptr;
 			}
 		}
+		vector() = default;
+		vector(initializer_list<T> list)
+		{
+			reserve(list.size());
+			for (auto& e : list)
+			{
+				push_back(e);
+			}
+		}
+		vector(const vector<T>& v)
+		{
+			reserve(v.capacity());
+			for (auto e : v)
+			{
+				push_back(e);
+			}
+		}
+		void swap(vector<T>& v)
+		{
+			std::swap(_finish, v._finish);
+			std::swap(_start, v._start);
+			std::swap(_end_of_storage,v._end_of_storage);
+		}
+		vector<T>& operator=(vector<T> t)
+		{
+			swap(t);
+			return *this;
+		}
+		template <class InputIterator>
+		vector(InputIterator first, InputIterator last)
+		{
+			while (first != last)
+			{
+				push_back(*first++);
+			}
+		}
+		vector(size_t n, const T& value = T())//缺省值用匿名对象，调用默认构造,同时也支持内置类型 
+		{
+			reserve(n);
+			while (n > 0)
+			{
+				push_back(value);
+				--n;
+			}
+		}
+		vector(int n, const T& value = T())//重载构造，解决了不支持vector（int ,int)这样的写法
+		{
+			reserve(n);
+			while (n > 0)
+			{
+				push_back(value);
+				--n;
+			}
+		}
 		typedef T* iterator;
+		typedef const T* const_iterator;
 		iterator begin()
 		{
 			return _start;
 		}
 		iterator end()
+		{
+			return _finish;
+		}
+		const_iterator begin()const
+		{
+			return _start;
+		}
+		const_iterator end()const
 		{
 			return _finish;
 		}
@@ -49,7 +113,11 @@ namespace bit
 				size_t old_size = size();
 				if (_start)
 				{
-					memcpy(tmp, _start, sizeof(T) * size());
+					//memcpy(tmp, _start, sizeof(T) * size());如果T是string，就是浅拷贝
+					for (int i = 0; i < old_size; ++i)
+					{
+						tmp[i] = _start[i];
+					}
 					delete[] _start;
 				}
 				_start = tmp;
@@ -96,7 +164,6 @@ namespace bit
 		void erase(iterator pos)
 		{
 			assert(pos >= _start && pos < _finish);
-			iterator re = ++pos;
 			for (iterator t = pos;t<end(); ++t)
 			{
 				*t = *(t + 1);
