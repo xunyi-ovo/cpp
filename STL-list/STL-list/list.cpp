@@ -1,18 +1,36 @@
 #include "list.h"
 #include <list>
 #include <algorithm>
-void test1()
+namespace xunyi
 {
-	list<int> ls = { 1,2,3,4,5,6,7};
-	list<int>::iterator ls_iter1 = find(ls.begin(),ls.end(), 4);
-	ls.splice(ls.begin(), ls, ls_iter1,ls.end());
-	for (auto& e : ls)
+	void test1()
 	{
-		cout << e << " ";
+		class Pos
+		{
+		public:
+			int _row;
+			int _col;
+			Pos(int row=0,int col=0):_row(row),_col(col)
+			{}
+		};
+		list<Pos> ls1;
+		ls1.push_back({3,4});
+		ls1.push_back(Pos(3,4));
+		ls1.push_back(Pos(5,3));
+		auto it = ls1.begin();
+		while (it != ls1.end())
+		{
+			cout << "(" << it->_row << "," << it->_col << ")" << endl;
+			it++;
+		}
+	}
+	void test2()
+	{
+
 	}
 }
 int main()
 {
-	test1();
+	xunyi::test1();
 	return 0;
 }
