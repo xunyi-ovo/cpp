@@ -3,15 +3,12 @@
   "WorkspaceRootPath": "D:\\C\\gitee\\cpp\\STL-list\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{40DA3DEA-F3B3-4DE7-9D62-767EE73B3BA0}|STL-list\\STL-list.vcxproj|D:\\C\\gitee\\cpp\\STL-list\\STL-list\\list.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{40DA3DEA-F3B3-4DE7-9D62-767EE73B3BA0}|STL-list\\STL-list.vcxproj|solutionrelative:STL-list\\list.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{40DA3DEA-F3B3-4DE7-9D62-767EE73B3BA0}|STL-list\\STL-list.vcxproj|D:\\C\\gitee\\cpp\\STL-list\\STL-list\\list.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{40DA3DEA-F3B3-4DE7-9D62-767EE73B3BA0}|STL-list\\STL-list.vcxproj|solutionrelative:STL-list\\list.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\C\\gitee\\cpp\\STL\u6E90\u7801\\stl_slist.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{40DA3DEA-F3B3-4DE7-9D62-767EE73B3BA0}|STL-list\\STL-list.vcxproj|D:\\C\\gitee\\cpp\\STL-list\\STL-list\\list.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{40DA3DEA-F3B3-4DE7-9D62-767EE73B3BA0}|STL-list\\STL-list.vcxproj|solutionrelative:STL-list\\list.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -21,17 +18,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "list.h",
               "DocumentMoniker": "D:\\C\\gitee\\cpp\\STL-list\\STL-list\\list.h",
               "RelativeDocumentMoniker": "STL-list\\list.h",
               "ToolTip": "D:\\C\\gitee\\cpp\\STL-list\\STL-list\\list.h",
               "RelativeToolTip": "STL-list\\list.h",
-              "ViewState": "AQIAADkAAAAAAAAAAAAAACoAAAAAAAAA",
+              "ViewState": "AQIAAGEAAAAAAAAAAIAzwGoAAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-06-22T12:01:22.715Z",
               "IsPinned": true,
@@ -39,26 +36,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "stl_slist.h",
-              "DocumentMoniker": "D:\\C\\gitee\\cpp\\STL\u6E90\u7801\\stl_slist.h",
-              "RelativeDocumentMoniker": "..\\STL\u6E90\u7801\\stl_slist.h",
-              "ToolTip": "D:\\C\\gitee\\cpp\\STL\u6E90\u7801\\stl_slist.h [\u53EA\u8BFB]",
-              "RelativeToolTip": "..\\STL\u6E90\u7801\\stl_slist.h [\u53EA\u8BFB]",
-              "ViewState": "AQIAAGAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-06-26T01:48:25.796Z",
-              "EditorCaption": " [\u53EA\u8BFB]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "list.cpp",
               "DocumentMoniker": "D:\\C\\gitee\\cpp\\STL-list\\STL-list\\list.cpp",
               "RelativeDocumentMoniker": "STL-list\\list.cpp",
               "ToolTip": "D:\\C\\gitee\\cpp\\STL-list\\STL-list\\list.cpp",
               "RelativeToolTip": "STL-list\\list.cpp",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAA8AAAAQAAAA",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAADEAAAALAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-06-22T12:01:35.583Z",
               "EditorCaption": ""

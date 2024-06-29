@@ -1,2 +1,3 @@
 ﻿  list.cpp
+D:\C\gitee\cpp\STL-list\STL-list\list.cpp(42,1): warning C4172: 返回局部变量或临时变量的地址: a
   STL-list.vcxproj -> D:\C\gitee\cpp\STL-list\x64\Debug\STL-list.exe

@@ -60,8 +60,54 @@ namespace xunyi
 		{
 			return _pointer != x._pointer;
 		}
-	
-
+	};
+	template<typename T>
+	class const_list_iterator
+	{
+	private:
+		typedef listnode<T>*  _node_pointer;
+		typedef const_list_iterator<T>  Self;
+		_node_pointer  _pointer;
+	public:
+		const_list_iterator(_node_pointer pointer = nullptr) :
+			_pointer(pointer)
+		{}
+		//const_iterator的核心
+		const T& operator*()
+		{
+			return _pointer->_data;
+		}
+		//const_iterator的核心
+		const T* operator->()
+		{
+			return &_pointer->_data;
+		}
+		Self& operator++()
+		{
+			_pointer = _pointer->_next;
+			return *this;
+		}
+		Self operator++(int)
+		{
+			Self tmp(_pointer);
+			_pointer = _pointer->_next;
+			return tmp;
+		}
+		Self& operator--()
+		{
+			_pointer = _pointer->_prev;
+			return *this;
+		}
+		Self operator--(int)
+		{
+			Self tmp(_pointer);
+			_pointer = _pointer->_prev;
+			return tmp;
+		}
+		bool operator!=(const Self& x)
+		{
+			return _pointer != x._pointer;
+		}
 	};
 	template<typename T>
 	class list
@@ -71,6 +117,7 @@ namespace xunyi
 		node* _head;
 	public:
 		typedef _list_iterator<T> iterator;
+		typedef const_list_iterator<T> const_iterator;
 		list():_head(new node)
 		{
 			_head->_prev = _head->_next = _head;
@@ -90,6 +137,14 @@ namespace xunyi
 			return _head->_next;
 		}
 		iterator end()
+		{
+			return _head;
+		}
+		const_iterator begin()const
+		{
+			return const_iterator(_head);
+		}
+		const_iterator end()const
 		{
 			return _head;
 		}
