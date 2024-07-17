@@ -23,30 +23,38 @@ namespace xunyi
 			cout << "(" << it->_row << "," << it->_col << ")" << endl;
 			it++;
 		}
-		cout << endl;
 	}
-	void test2(const list<int>& ls)
+	void test2()
 	{
-		list<int>::const_iterator it1 = ls.begin();
+		list<int> ls;
+		ls.push_back(1);
+		ls.push_back(2);
+		ls.push_back(3);
+		list<int>::iterator it1 = ls.begin();
 		while (it1 != ls.end())
 		{
-			cout << *it1 << "  ";
-			it1++;
+			cout << *it1++ << " ";
 		}
-
 	}
-}
-int& add()
-{
-	int a = 333;
-	return a;
+	void test3()
+	{
+		list<int> ls;
+		ls.push_back(5);
+		ls.push_back(2);
+		ls.push_back(0);
+		ls.push_back(1);
+		ls.push_back(1);
+		auto it1 = ls.begin();
+		for (auto& e : ls)
+		{
+			cout << e << " ";
+		}
+	}
 }
 int main()
 {
-	xunyi::test1();
-	xunyi::list<int> ls;
-	ls.push_back(1);
-	ls.push_back(3);
-	add() = 2;
+	//xunyi::test2();
+	xunyi::test3();
+
 	return 0;
 }

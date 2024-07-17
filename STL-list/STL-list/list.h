@@ -3,152 +3,107 @@
 using namespace std;
 namespace xunyi
 {
-	template<typename T>
-	struct listnode
+	template<class T>
+	class _list_node
 	{
+	public:
 		T _data;
-		listnode<T>* _prev;
-		listnode<T>* _next;
-		listnode<T>(const T& value = T())
+		_list_node<T>* _next;
+		_list_node<T>* _prev;
+		_list_node(const T& value = T()) :_data(value)
 		{
-			_data = value;
-			_prev = nullptr;
-			_next = nullptr;
+			_next = _prev = this;
 		}
 	};
-	template<typename T>
-	class _list_iterator
+	template<class T,class Ref,class Ptr> struct _list_iterator
+	{
+		typedef _list_node<T>*            Pointer;
+		typedef _list_iterator<T,Ref,Ptr> Self;
+		Pointer pointer;
+		_list_iterator(Pointer p = nullptr) :pointer(p) {}
+		Ref operator*() { return pointer->_data; }
+		Ptr operator->() { return &pointer->_data; }
+		Self& operator++() { pointer = pointer->_next; return *this; }
+		Self operator++(int) { Self tmp(pointer); pointer = pointer->_next; return tmp; }
+		Self& operator--() { pointer = pointer->prev; return *this; }
+		Self operator--(int) { Self tmp(pointer); pointer = pointer->_prev; return tmp; }
+		bool operator!=(const Self& it) { return pointer != it.pointer; }
+	};
+	/*template<class T> class const_list_iterator
 	{
 	private:
-		typedef listnode<T>* _node_pointer;
-		_node_pointer  _pointer;
+		typedef _list_node<T>* Pointer;
+		typedef const_list_iterator<T> Self;
+		Pointer pointer;
 	public:
-		_list_iterator(_node_pointer pointer = nullptr):
-			_pointer(pointer)
-		{}
-		T& operator*()
-		{
-			return _pointer->_data;
-		}
-		T* operator->()
-		{
-			return &_pointer->_data;
-		}
-		_list_iterator& operator++()
-		{
-			_pointer = _pointer->_next;
-			return *this;
-		}
-		_list_iterator operator++(int)
-		{
-			_list_iterator tmp(_pointer);
-			_pointer = _pointer->_next;
-			return tmp;
-		}
-		_list_iterator& operator--()
-		{
-			_pointer = _pointer->_prev;
-			return *this;
-		}
-		_list_iterator operator--(int)
-		{
-			_list_iterator tmp(_pointer);
-			_pointer = _pointer->_prev;
-			return tmp;
-		}
-		bool operator!=(const _list_iterator& x)
-		{
-			return _pointer != x._pointer;
-		}
-	};
-	template<typename T>
-	class const_list_iterator
+		const_list_iterator(Pointer p = nullptr) :pointer(p) {}
+		const T& operator*() { return pointer->_data; }
+		const T* operator->() { return &pointer->_data; }
+		Self& operator++() { pointer = pointer->_next; return *this; }
+		Self operator++(int) { Self tmp(pointer); pointer = pointer->_next; return tmp; }
+		Self& operator--() { pointer = pointer->prev; return *this; }
+		Self operator--(int) { Self tmp(pointer); pointer = pointer->_prev; return tmp; }
+		bool operator!=(const Self& it) { return pointer != it.pointer; }
+	};*/
+	template<class T> class list
 	{
 	private:
-		typedef listnode<T>*  _node_pointer;
-		typedef const_list_iterator<T>  Self;
-		_node_pointer  _pointer;
-	public:
-		const_list_iterator(_node_pointer pointer = nullptr) :
-			_pointer(pointer)
-		{}
-		//const_iterator的核心
-		const T& operator*()
-		{
-			return _pointer->_data;
-		}
-		//const_iterator的核心
-		const T* operator->()
-		{
-			return &_pointer->_data;
-		}
-		Self& operator++()
-		{
-			_pointer = _pointer->_next;
-			return *this;
-		}
-		Self operator++(int)
-		{
-			Self tmp(_pointer);
-			_pointer = _pointer->_next;
-			return tmp;
-		}
-		Self& operator--()
-		{
-			_pointer = _pointer->_prev;
-			return *this;
-		}
-		Self operator--(int)
-		{
-			Self tmp(_pointer);
-			_pointer = _pointer->_prev;
-			return tmp;
-		}
-		bool operator!=(const Self& x)
-		{
-			return _pointer != x._pointer;
-		}
-	};
-	template<typename T>
-	class list
-	{
-	private:
-		typedef listnode<T> node;
+		typedef _list_node<T> node;
 		node* _head;
 	public:
-		typedef _list_iterator<T> iterator;
-		typedef const_list_iterator<T> const_iterator;
-		list():_head(new node)
-		{
-			_head->_prev = _head->_next = _head;
-		}
+		typedef _list_iterator<T,T&,T*> iterator;
+		//typedef _list_iterator<const T> const_iterator; error!数据类型和_next与_prev都实例化为T，但const_iterator封装的指针实例化为const T
+		typedef _list_iterator<T,const T&,const T*> const_iterator;//不同的参数，类型不同，在下面传参就会出错
+		list():_head(new node){}
 		void push_back(const T& value)
 		{
-			node* newnode = new node(value);
-			node* _tail = _head->_prev;
-			_tail->_next = newnode;
-			newnode->_prev = _tail;
-			newnode->_next = _head;
+			/*node* newnode = new node(value);
+			_head->_prev->_next = newnode;
+			newnode->_prev = _head->_prev;
 			_head->_prev = newnode;
-			
+			newnode->_next = _head;*/
+			insert(end(), value);
 		}
-		iterator begin()
+		void pop_back()
 		{
-			return _head->_next;
+			erase(--end());
 		}
-		iterator end()
+		void push_front(const T& value)
 		{
-			return _head;
+			insert(begin(), value);
 		}
-		const_iterator begin()const
+		void pop_front()
 		{
-			return const_iterator(_head);
+			erase(begin());
 		}
-		const_iterator end()const
+		iterator begin() { return iterator(_head->_next); }
+		iterator end() { return iterator(_head); }
+		const_iterator begin() const { return const_iterator(_head->_next); }
+		const_iterator end() const { return const_iterator(_head); }
+		iterator insert(iterator pos,const T& value)
 		{
-			return _head;
+			node* newnode = new node(value);
+			node* prev = pos.pointer->_prev;
+			node* cur = pos.pointer;
+			prev->_next = newnode;
+			newnode->_prev = prev;
+			newnode->_next = cur;
+			cur->_prev = newnode;
+			return iterator(newnode);
 		}
+		iterator erase(iterator pos)
+		{
+			assert(pos != end());
+			node* prev = pos.pointer->_prev;
+			node* next = pos.pointer->_next;
+			node* waste = pos.pointer;
+			prev->_next = next;
+			next->_prev = prev;
+			delete waste;
+			return iterator(next);
+		}
+
 	};
-	
+
 }
 
