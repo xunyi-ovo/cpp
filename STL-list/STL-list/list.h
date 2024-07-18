@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <assert.h>
 using namespace std;
 namespace xunyi
 {
@@ -25,7 +26,7 @@ namespace xunyi
 		Ptr operator->() { return &pointer->_data; }
 		Self& operator++() { pointer = pointer->_next; return *this; }
 		Self operator++(int) { Self tmp(pointer); pointer = pointer->_next; return tmp; }
-		Self& operator--() { pointer = pointer->prev; return *this; }
+		Self& operator--() { pointer = pointer->_prev; return *this; }
 		Self operator--(int) { Self tmp(pointer); pointer = pointer->_prev; return tmp; }
 		bool operator!=(const Self& it) { return pointer != it.pointer; }
 	};
@@ -55,6 +56,28 @@ namespace xunyi
 		//typedef _list_iterator<const T> const_iterator; error!数据类型和_next与_prev都实例化为T，但const_iterator封装的指针实例化为const T
 		typedef _list_iterator<T,const T&,const T*> const_iterator;//不同的参数，类型不同，在下面传参就会出错
 		list():_head(new node){}
+		list(const list<T>& ls)
+		{
+			_head = new node;
+			for (const auto& e : ls)
+			{
+				push_back(e);
+			}
+		}
+		list(initializer_list<T> li)
+		{
+			_head = new node;
+			for (const auto& e : li)
+			{
+				push_back(e);
+			}
+		}
+		list<T>& operator=(list<T> ls)
+		{
+			//资本写法哈哈哈
+			swap(_head, ls._head);
+			return *this;
+		}
 		void push_back(const T& value)
 		{
 			/*node* newnode = new node(value);
@@ -62,11 +85,26 @@ namespace xunyi
 			newnode->_prev = _head->_prev;
 			_head->_prev = newnode;
 			newnode->_next = _head;*/
+			//复用
 			insert(end(), value);
 		}
 		void pop_back()
 		{
 			erase(--end());
+		}
+		~list()
+		{
+			clear();
+			delete _head;
+			_head = nullptr;
+		}
+		void clear()
+		{
+			auto it = begin();
+			while (it != end())
+			{
+				it = erase(it);
+			}
 		}
 		void push_front(const T& value)
 		{

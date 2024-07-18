@@ -50,11 +50,49 @@ namespace xunyi
 			cout << e << " ";
 		}
 	}
+	void test4()
+	{
+		list<char> ls1;
+		ls1.push_back('x');
+		ls1.push_back('u');
+		ls1.push_back('n');
+		ls1.push_back('y');
+		ls1.push_back('i');
+		list<char> ls2 = ls1;
+		for (auto e : ls1)
+		{
+			cout << e;
+		}
+		cout << endl;
+		ls2.pop_front();
+		for (auto e : ls2)
+		{
+			cout << e;
+		}
+		ls1 = ls2;
+		cout << endl;
+		for (auto e : ls1)
+		{
+			cout << e;
+		}
+		cout << endl;
+		for (auto e : ls2)
+		{
+			cout << e;
+		}
+	}
 }
+
 int main()
 {
-	//xunyi::test2();
-	xunyi::test3();
-
+	/*xunyi::test1();
+	xunyi::test2();
+	xunyi::test3();*/
+	/*xunyi::test4();*/
+	list<char> ls = { 'x','u','n' };
+	for (const auto& e : ls)
+	{
+		cout << e;
+	}
 	return 0;
 }
