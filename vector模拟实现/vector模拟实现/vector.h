@@ -161,7 +161,7 @@ namespace bit
 			++_finish;
 			return pos;//·µ»ØÐÂµÄpos
 		}
-		void erase(iterator pos)
+		iterator erase(iterator pos)
 		{
 			assert(pos >= _start && pos < _finish);
 			for (iterator t = pos;t<end(); ++t)
@@ -169,6 +169,7 @@ namespace bit
 				*t = *(t + 1);
 			}
 			--_finish;
+			return pos;
 		}
 	private:
 		iterator _start = nullptr;
