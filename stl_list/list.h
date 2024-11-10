@@ -1,4 +1,5 @@
 #include <iostream>
+#include <initializer_list>
 namespace xunyi{
 template<class T>
 struct ListNode{
@@ -6,7 +7,7 @@ struct ListNode{
     Self* _next;
     Self* _prev;
     T     _value;
-    ListNode(const T& value=T()):_next(nullptr),_prev(nullptr),_value(value){}
+    ListNode(const T& value=T()):_next(this),_prev(this),_value(value){}
 };
 
 template<class T,class Ref,class Pointer>
@@ -59,10 +60,23 @@ class List{
     public:
         typedef list_iterator<T, T &, T *> iterator;
         typedef list_iterator<T, const T &, const T *> const_iterator;
-        List() : _head(new Node())
-        {
-            _head->_next = _head;
-            _head->_prev = _head;
+        List() : _head(new Node()){}
+        List(const List<T>& ls){
+            _head = new Node();
+            for(const auto& e: ls){
+                push_back(e);
+            }
+        }
+        List(const initializer_list<T>& il)
+		{
+			for (const auto& e : il)
+			{
+				push_back(e);
+			}
+		}
+        List<T>& operator=(List<int> ls){
+            std::swap(_head,ls._head);
+            return *this;
         }
         ~List()
         {
@@ -129,12 +143,5 @@ class List{
             erase(begin());
         }
 };
-ListNode<int>* test1(){
-    List<int> ls;
-    ls.push_back(2);
-    ls.push_back(3);
-    ls.push_back(4);
-    ls.push_back(5);
-    return ls.begin()._node;
-}
+
 }
