@@ -8,27 +8,27 @@ void show_list(const xunyi::List<T>& ls){
     cout<<endl;
 }
 void test1(){
-    xunyi::List<int> ls;
-    ls.push_back(1);
-    ls.push_back(2);
-    ls.push_back(3);
-    ls.push_back(4);
-    ls.push_back(5);
+    xunyi::List<int> ls1;
+    ls1.push_back(1);
+    ls1.push_back(2);
+    ls1.push_back(3);
+    ls1.push_back(4);
+    ls1.push_back(5);
 
     xunyi::List<int> ls2;
     ls2.push_back(6);
-    show_list(ls);
+    ls2 = ls1;
+    xunyi::List<int> ls3 = {3,4,5};
+    xunyi::List<int> ls4(ls1.begin(),ls1.end());
+    show_list(ls1);
     show_list(ls2);
-    ls2 = ls;
     show_list(ls2);
-
-
+    show_list(ls3);
+    show_list(ls4);
 }
-void test2(){
-    xunyi::List<int> ls = {1,2,3};
-}
+
 int main()
 {
-    test2();
+    test1();
     return 0;
 }
