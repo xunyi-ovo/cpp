@@ -17,14 +17,13 @@ void test1(){
 
     xunyi::List<int> ls2;
     ls2.push_back(6);
-    ls2 = ls1;
-    xunyi::List<int> ls3 = {3,4,5};
-    xunyi::List<int> ls4(ls1.begin(),ls1.end());
+    ls1.pop_back();
+    ls1.pop_front();
+    ls1.pop_front();
+
+    show_list(ls2);
     show_list(ls1);
-    show_list(ls2);
-    show_list(ls2);
-    show_list(ls3);
-    show_list(ls4);
+   
 }
 
 int main()

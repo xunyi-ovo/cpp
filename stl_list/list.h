@@ -1,6 +1,7 @@
 #pragma once
 #include<iostream>
 #include <initializer_list>
+#include <assert.h>
 using namespace std;
 
 
@@ -61,21 +62,19 @@ namespace xunyi {
     {
     private:
         typedef ListNode<T> Node;
-        Node *_head;
+        Node *_head = new Node();
 
     public:
         typedef list_iterator<T, T &, T *> iterator;
         typedef list_iterator<T, const T &, const T *> const_iterator;
-        List() : _head(new Node()) {}
+        List() = default;
         List(const List<T>& ls) {
-            _head = new Node();
             for (const auto& e : ls) {
                 push_back(e);
             }
         }
         List(const initializer_list<T>& il)
         {
-            _head = new Node();
             for (const auto& e : il)
             {
                 push_back(e);
@@ -83,7 +82,6 @@ namespace xunyi {
         }
         template<class input_start>
         List(input_start begin,input_start end){
-            _head = new Node();
             auto it = begin;
             while(it!=end){
                 push_back(*it++);
@@ -101,7 +99,8 @@ namespace xunyi {
             {
                 it = erase(it);
             }
-            erase(finish);
+            delete _head;
+            _head = nullptr;
         }
         iterator end()
         {
@@ -132,6 +131,7 @@ namespace xunyi {
         }
         iterator erase(iterator pos)
         {
+            assert(pos!=end());
             Node* cur = pos._node;
             Node* prev = cur->_prev;
             Node* next = cur->_next;
