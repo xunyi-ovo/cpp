@@ -1,19 +1,42 @@
-
+#include<initializer_list>
 namespace xunyi{
     template<class Type>
     class vector{
         private:
-        Type* _start;
-        Type* _finish;
-        Type* _eofs;
+        Type* _start = nullptr;
+        Type* _finish = nullptr;
+        Type* _eofs = nullptr;
         public:
         typedef Type* iterator;
         typedef const Type* const_iterator;
         iterator begin(){return _start;}
         iterator end(){return _finish;}
-        const_iterator begin()const {return _start;}
-        const_iterator end()const {return _finish;}
-        int size()const {
+        const_iterator begin() const { return _start; }
+        const_iterator end() const { return _finish; }
+        vector() = default;
+        vector(const std::initializer_list<Type>& ls)
+        {
+            reserve(ls.size());
+            for (const auto &e : ls)
+            {
+                push_back(e);
+            }
+        }
+        template<class Input_iter>
+        vector(Input_iter start,Input_iter end){
+            while(start != end){
+                push_back(*start);
+                ++start;
+            }
+        }
+        vector(int n,const Type& value = Type()){
+            reserve(n);
+            for(int i=0;i<n;++i){
+                push_back(value);
+            }
+        }
+        int size() const
+        {
             return _finish - _start;
         }
         int storage()const {
@@ -44,9 +67,9 @@ namespace xunyi{
                 // 扩容之后，pos失效
                 pos = _start + len; // 恢复pos
             }
-            for (auto iter = --_finish; iter >= pos; --iter)
+            for (auto iter = _finish-1; iter >= pos; --iter)
             {
-                *(++iter) = *iter;
+                *(iter+1) = *iter;
             }
             *pos = value;
             ++_finish;
@@ -55,13 +78,12 @@ namespace xunyi{
         void push_back(const Type& value){
             insert(end(),value);
         }
-        vector():_start(nullptr),_finish(nullptr),_eofs(nullptr){}
-        vector(initializer_list<Type> ls){
-            reserve(ls.size());
-            for(const auto& e: ls){
-                push_back(e);
-            }
+
+
+        Type& operator[](int pos){
+            return _start[pos];
         }
+ 
 
     };
 }
