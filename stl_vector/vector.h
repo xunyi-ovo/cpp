@@ -1,4 +1,6 @@
-#include<initializer_list>
+#include <initializer_list>
+#include <assert.h>
+#include <algorithm>
 namespace xunyi{
     template<class Type>
     class vector{
@@ -14,6 +16,13 @@ namespace xunyi{
         const_iterator begin() const { return _start; }
         const_iterator end() const { return _finish; }
         vector() = default;
+        vector(const vector<int>& v){
+            reserve(v.size());
+            for (const auto &e : v)
+            {
+                push_back(e);
+            }
+        }
         vector(const std::initializer_list<Type>& ls)
         {
             reserve(ls.size());
@@ -34,6 +43,12 @@ namespace xunyi{
             for(int i=0;i<n;++i){
                 push_back(value);
             }
+        }
+        vector<int>& operator=(vector<int> v){
+            std::swap(_start,v._start);
+            std::swap(_finish,v._finish);
+            std::swap(_eofs,v._eofs);
+            return *this;
         }
         int size() const
         {
@@ -78,12 +93,32 @@ namespace xunyi{
         void push_back(const Type& value){
             insert(end(),value);
         }
-
-
+        void push_front(const Type& value){
+            insert(begin(),value);
+        }
         Type& operator[](int pos){
             return _start[pos];
         }
- 
+
+        void erase(iterator pos){
+            assert(size() > 0);
+            assert(pos>=_start && pos<_finish);
+
+            auto iter = pos + 1;
+            while(iter < _finish){
+                *(iter-1) = *iter;
+                ++iter;
+            }
+            --_finish;
+        }
+
+        void pop_back(){
+            assert(size()>0);
+            --_finish;
+        }
+        void pop_front(){
+            erase(begin());
+        }
 
     };
 }
