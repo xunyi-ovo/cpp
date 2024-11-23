@@ -90,6 +90,12 @@ namespace xunyi{
             ++_finish;
             return pos;
         }
+        const Type& back(){
+            return *(_finish-1);
+        }
+        const Type& front(){
+            return *_start;
+        }
         void push_back(const Type& value){
             insert(end(),value);
         }
@@ -118,6 +124,9 @@ namespace xunyi{
         }
         void pop_front(){
             erase(begin());
+        }
+        bool empty(){
+            return size()==0;
         }
 
     };
