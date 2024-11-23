@@ -68,11 +68,17 @@ namespace bit
 
 	cout<<endl;
 	}
+	void test6() {
+		vector<int> a = { 1,2,3 };
+		for (auto e : a) {
+			cout << e;
+		}
+	}
 }
 
 int main()
 {
-	bit::test3();
+	bit::test6();
 
 	return 0;
 }
