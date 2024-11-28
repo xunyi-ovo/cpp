@@ -20,8 +20,25 @@ namespace xunyi{
         show(v2);
 
     }
+    void test2(){
+        vector<string> arr = {"xunyi", "666"};
+        for (const auto &e : arr)
+            cout << e << " ";
+        cout << endl;
+        vector<string> arr2(arr);
+        for (const auto &e : arr2)
+            cout << e << " ";
+        cout << endl;
+        arr[0] = "333";
+        for (const auto &e : arr2)
+            cout << e << " ";
+        cout << endl;
+                for (const auto &e : arr)
+            cout << e << " ";
+        cout << endl;
+    }
 }
 int main(){
-    xunyi::test1();
+    xunyi::test2();
     return 0;
 }

@@ -16,7 +16,7 @@ namespace xunyi{
         const_iterator begin() const { return _start; }
         const_iterator end() const { return _finish; }
         vector() = default;
-        vector(const vector<int>& v){
+        vector(const vector<Type>& v){
             reserve(v.size());
             for (const auto &e : v)
             {
