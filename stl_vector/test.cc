@@ -37,8 +37,40 @@ namespace xunyi{
             cout << e << " ";
         cout << endl;
     }
+    void test3(){
+        vector<vector<char>> arr(6,vector<char>(12,'o'));
+        for(auto e:arr){
+            for(auto a:e)
+            cout<<a<<" ";
+            cout<<endl;
+        }
+        cout<<"size:"<<sizeof(arr)<<endl;
+        cout<<sizeof(arr[0]);
+    }
+
+    void test4(){
+        int** arr = (int**)malloc(24);
+        for(int i=0;i<3;++i){
+            arr[i] = (int*)malloc(sizeof(int)*5);
+        }
+        for (int i = 0; i < 3; ++i)
+        {
+            for (int j = 0; j < 5; ++j)
+            {
+                arr[i][j] = i + j;
+            }
+        }
+        for (int i = 0; i < 3; ++i)
+        {
+            for (int j = 0; j < 5; ++j)
+            {
+                cout<<arr[i][j]<<" ";
+            }
+            cout<<endl;
+        }
+    }
 }
 int main(){
-    xunyi::test2();
+    xunyi::test4(); 
     return 0;
 }

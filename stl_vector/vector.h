@@ -44,7 +44,7 @@ namespace xunyi{
                 push_back(value);
             }
         }
-        vector<int>& operator=(vector<int> v){
+        vector<Type>& operator=(vector<Type> v){
             std::swap(_start,v._start);
             std::swap(_finish,v._finish);
             std::swap(_eofs,v._eofs);
