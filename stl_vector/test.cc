@@ -69,8 +69,56 @@ namespace xunyi{
             cout<<endl;
         }
     }
+    void test5(){
+        vector<vector<int>> arr(3,vector<int>(6,1));
+        for(int i=0;i<3;++i){
+            for(int j=0;j<6;++j){
+                printf("%p ",&arr[i][j]);
+            }
+            cout<<endl;
+        }
+    }
+    void test6(){
+        {
+            int x = 666;
+            cout<<x<<endl<<&x<<endl;
+        }
+        {
+            int y;
+            cout<<y<<endl<<&y<<endl;
+        }
+    }
+}
+bool is_hao(int n){
+    int flag=1;
+    while(n){
+        if(flag==1){
+            if((n&1)==0){
+                return false;
+            }
+            flag=0;
+        }
+        else{
+            if((n&1)==1){
+                return false;
+            }
+            flag=1;
+        }
+        n/=10;
+    }
+    return true;
+}
+void solution(){
+    int n; cin>>n;
+    int ans = 0;
+    for(int i=1;i<=n;++i){
+        if(is_hao(i)){
+            ++ans;
+        }
+    }
+    cout<<ans<<endl;
 }
 int main(){
-    xunyi::test4(); 
+    solution();  
     return 0;
 }
