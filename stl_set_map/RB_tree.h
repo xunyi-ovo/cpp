@@ -1,11 +1,11 @@
+#pragma once
 #include <iostream>
-
 using namespace std;
 enum Color{
     BLACK,
     RED
 };
-
+//define of node
 template <class V>
 struct RB_node{
     RB_node<V>* _parent;
@@ -18,7 +18,7 @@ struct RB_node{
     _left(nullptr),_right(nullptr),
     _col(RED){}
 };
-
+//define of iterator
 template<class T,class Ref,class Pointer>
 struct rbIterator{
     typedef RB_node<T> node;
@@ -49,7 +49,25 @@ struct rbIterator{
     }
     node* _pointer;
 };
-template<class K,class V,class keyOfvalue>
+
+
+
+template <class T>
+class my_greater{
+    public:
+    bool operator()(const T& p1,const T& p2){
+        return p1>p2;
+    }
+};
+template <class T>
+class my_less{
+    public:
+    bool operator()(const T& p1,const T& p2){
+        return p1<p2;
+    }
+};
+//rbtree
+template<class K,class V,class keyOfvalue,class Compare = my_less<K>>
 class RB_tree{
     typedef RB_node<V> node;
 public:
@@ -68,15 +86,15 @@ public:
     const_iterator Begin()const
     {
         node *leftMost = _root;
-        while (leftMost != nullptr && leftMost->left != nullptr)
+        while (leftMost != nullptr && leftMost->_left != nullptr)
         {
-            leftMost = leftMost->left;
+            leftMost = leftMost->_left;
         }
-        return iterator(leftMost);
+        return const_iterator(leftMost);
     }
     const_iterator End()const
     {
-        return iterator(nullptr);
+        return const_iterator(nullptr);
     }
     int tree_height(){
         return height(_root);
@@ -112,12 +130,13 @@ public:
         else{
             node* cur = _root,*parent = nullptr;
             keyOfvalue kofv;
+            Compare cmp;
             while(cur!=nullptr){
-                if(kofv(value) < kofv(cur->_value)){
+                if(cmp(kofv(value),kofv(cur->_value))){
                     parent = cur;
                     cur = cur->_left;
                 }
-                else if(kofv(value) > kofv(cur->_value)){
+                else if(cmp(kofv(cur->_value),kofv(value))){
                     parent=cur;
                     cur = cur->_right;
                 }
@@ -126,7 +145,7 @@ public:
                 }
             }
             cur = new node(value);
-            if(kofv(value) < kofv(parent->_value)){
+            if(cmp(kofv(value),kofv(parent->_value))){
                 parent->_left = cur;
             }
             else{
@@ -239,7 +258,7 @@ void rorate_left(node* parent){
         p_l->_parent = pparent;
     }
     node* _root=nullptr;
-        node* copy(node* root){
+    node* copy(node* root){
         if(root==nullptr)
         return root;
         node* newRoot = new node(root->_value);

@@ -1,7 +1,7 @@
 #include "RB_tree.h"
 
 namespace xunyi{
-template <class K>
+template <class K,class Compare=my_less<K>>
 class set{
     public:
     struct keyOfvalue{
@@ -27,6 +27,6 @@ class set{
         return tree.Insert(key);
     }
     private:
-    RB_tree<K,K,keyOfvalue> tree;
+    RB_tree<K,K,keyOfvalue,Compare> tree;
 };
 }
