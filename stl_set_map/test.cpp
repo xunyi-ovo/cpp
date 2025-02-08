@@ -19,18 +19,20 @@ void test1(){
     cout<<endl;
 }
 void test2(){
-    xunyi::map<string,int,my_greater<string>> word_count;
-    word_count.insert(make_pair("into the leaves",13));
-    word_count.insert(make_pair("gone with leaves",13));
-    word_count.insert(make_pair("i",1));
-    word_count.insert(make_pair("love",4));
-    word_count.insert(make_pair("you",3));
-    auto iter = word_count.begin();
-    while(iter!=word_count.end()){
-        cout<<iter->first<<" "<<iter->second<<endl;
-        ++iter;
-    }
+    xunyi::map<string,int> word_count;
+    word_count["into the leaves"]=13;
+    word_count["done with leaves"]=13;
+    word_count["e"]=1;
+    word_count["love"]=4;
+    word_count["you"]=3;
 
+    word_count["e"]=6;
+    word_count["love"]=66;
+    word_count["tom"]=666;
+    word_count["jerry"]=999;
+    for(const auto& e:word_count){
+        cout<<e.first<<"  "<<e.second<<endl;
+    }
 }
 int main(){
     test2();

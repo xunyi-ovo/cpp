@@ -8,8 +8,11 @@ namespace xunyi{
                 return p.first;
             }
         };
-        typedef typename RB_tree<K,pair<K,V>,keyOfvalue>::iterator iterator;
-        typedef typename RB_tree<K,pair<K,V>,keyOfvalue>::const_iterator const_iterator;
+        typedef typename RB_tree<K,pair<const K,V>,keyOfvalue>::iterator iterator;
+        typedef typename RB_tree<K,pair<const K,V>,keyOfvalue>::const_iterator const_iterator;
+        V& operator[](const K& key){
+            return (tree.Insert(make_pair(key,V())).first)->second;
+        }
         iterator begin()
         {
             return tree.Begin();
@@ -26,13 +29,15 @@ namespace xunyi{
         {
             return tree.End();
         }
-        bool insert(const pair<K,V>& p)
+        pair<iterator,bool> insert(const pair<K,V>& p)
         {
             return tree.Insert(p);
         }
-
+        iterator find(const K& key){
+            return tree.Find(key);
+        }
         private:
-        RB_tree<K,pair<K,V>,keyOfvalue,Compare> tree;
+        RB_tree<K,pair<const K,V>,keyOfvalue,Compare> tree;
 
     };
 }

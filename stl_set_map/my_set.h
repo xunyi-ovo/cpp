@@ -9,8 +9,8 @@ class set{
             return key;
         }
     };
-    typedef typename RB_tree<K,K,keyOfvalue>::iterator iterator;
-    typedef typename RB_tree<K,K,keyOfvalue>::const_iterator const_iterator;
+    typedef typename RB_tree<K,const K,keyOfvalue>::iterator iterator;
+    typedef typename RB_tree<K,const K,keyOfvalue>::const_iterator const_iterator;
     iterator begin(){
         return tree.Begin();
     }
@@ -23,10 +23,13 @@ class set{
     const_iterator end()const{
         return tree.End();
     }
-    bool insert(const K& key){
+    pair<iterator,bool> insert(const K& key){
         return tree.Insert(key);
     }
+    iterator find(const K& key){
+        return tree.Find(key);
+    }
     private:
-    RB_tree<K,K,keyOfvalue,Compare> tree;
+    RB_tree<K,const K,keyOfvalue,Compare> tree;
 };
 }

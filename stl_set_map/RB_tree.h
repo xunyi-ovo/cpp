@@ -29,6 +29,9 @@ struct rbIterator{
     bool operator!=(const Self& iter){
         return _pointer!=iter._pointer;
     }
+    bool operator==(const Self& iter){
+        return _pointer==iter._pointer;
+    }
     Self& operator++(){
         if(_pointer->_right!=nullptr){
             _pointer=_pointer->_right;
@@ -107,7 +110,7 @@ public:
     RB_tree(const RB_tree& COPY){
         _root = copy(COPY._root);
     }
-    node* Find(const K& key)
+    iterator Find(const K& key)
     {
         node* cur = _root;
         while (cur != nullptr)
@@ -117,15 +120,15 @@ public:
             else if (key > cur->_value)
                 cur = cur->_right;
             else
-                return cur;
+                return iterator(cur);
         }
-        return nullptr;
+        return End();
     }
-    bool Insert(const V& value){
+    pair<iterator,bool> Insert(const V& value){
         if(_root==nullptr){
             _root = new node(value);
             _root->_col = BLACK;
-            return true;
+            return make_pair(iterator(_root),true);
         }
         else{
             node* cur = _root,*parent = nullptr;
@@ -141,10 +144,11 @@ public:
                     cur = cur->_right;
                 }
                 else{
-                    return false;
+                    return make_pair(iterator(cur),false);
                 }
             }
             cur = new node(value);
+            node* new_node = cur;
             if(cmp(kofv(value),kofv(parent->_value))){
                 parent->_left = cur;
             }
@@ -209,8 +213,8 @@ public:
 
             }
             _root->_col=BLACK;
+            return make_pair(iterator(new_node),true);
         }
-        return true;
     }
 private:
 void rorate_left(node* parent){
@@ -255,6 +259,7 @@ void rorate_left(node* parent){
         else{
             pparent->_right = p_l;
         }
+        
         p_l->_parent = pparent;
     }
     node* _root=nullptr;
