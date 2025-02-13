@@ -1,13 +1,15 @@
+#ifndef __hash__
+#define __hash__
 #include <vector>
 #include <iostream>
 using namespace std;
-template<class K,class V>
+template<class V>
 struct hashNode{
-    pair<K,V> _kv;
+    V _value;
     hashNode* _next;
-    hashNode(const pair<K,V>& kv,
+    hashNode(const V& value,
         hashNode* next = nullptr):
-        _kv(kv),_next(next){}
+        _value(value),_next(next){}
 };
 template <class K>
 struct hashFunc{
@@ -15,60 +17,108 @@ struct hashFunc{
         return size_t(key);
     }
 };
+template<>
+struct hashFunc<string>{
+    size_t operator()(const string& s){
+        size_t ret = 0;
+        for(auto e:s){
+            ret = ret*131+e;
+        }
+        return ret;
+    }
+};
 
-template<class K,class V,class hash=hashFunc<K>>
+template<class K,class V,class keyOfv,class hash=hashFunc<K>>
 class hashTable{
     public:
-    typedef hashNode<K,V> node;
+    typedef hashNode<V> node;
     hashTable(){
         _table.resize(10,nullptr);
     }
     ~hashTable(){
-        for(auto e:_table){
-            
+        for(auto& e:_table){
+            node* cur = e;
+            while(cur!=nullptr){
+                node* next = cur->_next;
+                delete cur;
+                cur = next;
+            }
+            e=nullptr;
         }
     }
     node* Find(const K& key){
         hash hs;
+        keyOfv kov;
         size_t hashi=hs(key)%_table.size();
         node* cur = _table[hashi];
         while(cur!=nullptr){
-            if(cur->_kv.first==key){
+            if(kov(cur->_value)==key){
                 break;
             }
             cur = cur->_next;
         }
         return cur;
     }
-    bool Insert(const pair<K,V>& kv){
-        if(Find(kv.first)!=nullptr){
+    bool erase(const K& key){
+        hash hs;
+        keyOfv kov;
+        int hashi = hs(key)%_table.size();
+        node* prev =nullptr;
+        node* cur = _table[hashi];
+        while(cur!=nullptr){
+            if(kov(cur->_value)==key){
+                if (prev == nullptr)
+                    _table[hashi] = cur->_next;
+                else
+                    prev->_next = cur->_next;
+
+                delete cur;
+                --_count;
+                return true;
+            }
+            prev = cur;
+            cur = cur->_next;
+        }
+        return false;
+    }
+    bool Insert(const V& value){
+        keyOfv kov;
+        if(Find(kov(value))!=nullptr){
             return false;
         }
         hash hs;
         if(_count==_table.size()){
             vector<node*> newTable(2*_table.size(),nullptr);
             for(const auto& e:_table){
-                node* curr = e;
-                while(curr!=nullptr){
-                    node* next = curr->_next;
-                    size_t hashi = hs(curr->_kv.first)%newTable.size();
-                    curr->_next = newTable[hashi];
-                    newTable[hashi] = curr;
-                    curr=next;
+                node* cur = e;
+                while(cur!=nullptr){ 
+                    node* next = cur->_next;
+                    size_t hashi = hs(kov(cur->_value))%newTable.size();
+                    cur->_next = newTable[hashi];
+                    newTable[hashi] = cur;
+                    cur=next;
                 }
             }
             _table.swap(newTable);
         }
-        size_t hashi = hs(kv.first)%_table.size();
-        node* newnode = new node(kv);
+        size_t hashi = hs(kov(value))%_table.size();
+        node* newnode = new node(value);
         newnode->_next = _table[hashi];
         _table[hashi] = newnode;
         ++_count;
         return true;
     }
-
-
+    void show() {
+        for (auto e : _table) {
+            node* cur = e;
+            while (cur != nullptr) {
+                cout << cur->_kv.first << "," << cur->_kv.second << "   ";
+                cur = cur->_next;
+            }
+        }
+    }
     private:
     vector<node*> _table;
     size_t _count = 0;
 };
+#endif
