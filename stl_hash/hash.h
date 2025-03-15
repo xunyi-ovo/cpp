@@ -11,6 +11,61 @@ struct hashNode{
         hashNode* next = nullptr):
         _value(value),_next(next){}
 };
+
+template<class K,class V,class keyOfv,class hash>
+class hashTable;
+
+template<class K,class V,class Ref,class Ptr,class keyOfv,class hash>
+class hash_iter{
+    public:
+    typedef hashNode<V> node;
+    typedef hash_iter<K,V,Ref,Ptr,keyOfv,hash> Self;
+    typedef hashTable<K,V,keyOfv,hash> Master;
+    hash_iter(node*& ps,Master*& pm):
+             _pointer(ps)
+            ,_ptable(pm){}
+    bool operator!=(const Self& iter){
+        return _pointer!=iter._pointer;
+    }
+    bool operator==(const Self& iter){
+        return _pointer==iter._pointer;
+    }
+    Self& operator++(){
+        node* cur = _pointer;
+        if(cur->_next!=nullptr){
+            _pointer=cur->_next;       
+        }
+        else{
+            hash hs;
+            keyOfv kov;
+            int hashi = hs(kov(_pointer->_value))%(_ptable->_table.size());
+            ++hashi;
+            while(hashi < _ptable->_table.size()){
+                if(_ptable->_table[hashi] !=nullptr){
+                    break;
+                }
+                ++hashi;
+            }
+            if(hashi <_ptable->_table.size()){
+                _pointer = _ptable->_table[hashi];
+            }
+            else{
+                _pointer = nullptr;
+            }
+        }
+        return *this;
+    }
+    Ref operator*(){
+        return _pointer->_value;
+    }
+    Ptr operator->(){
+        return &_pointer->_value;
+    }
+    private:
+    node* _pointer;
+    Master* _ptable;
+
+};
 template <class K>
 struct hashFunc{
     size_t operator()(const K& key){
@@ -28,7 +83,7 @@ struct hashFunc<string>{
     }
 };
 
-template<class K,class V,class keyOfv,class hash=hashFunc<K>>
+template<class K,class V,class keyOfv,class hash>
 class hashTable{
     public:
     typedef hashNode<V> node;
