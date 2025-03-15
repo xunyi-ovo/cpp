@@ -1,0 +1,96 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\C\\gitee\\cpp\\Date_Fraction\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\C\\code\\test.c\\c\u002B\u002B\\c\u002B\u002B\\Fraction.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\C\\code\\test.c\\c\u002B\u002B\\c\u002B\u002B\\Frac.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\C\\code\\test.c\\c\u002B\u002B\\c\u002B\u002B\\Date.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\C\\code\\test.c\\c\u002B\u002B\\c\u002B\u002B\\Date.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\C\\code\\test.c\\c\u002B\u002B\\c\u002B\u002B\\test.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Frac.h",
+              "DocumentMoniker": "D:\\C\\code\\test.c\\c\u002B\u002B\\c\u002B\u002B\\Frac.h",
+              "RelativeDocumentMoniker": "..\\..\\..\\code\\test.c\\c\u002B\u002B\\c\u002B\u002B\\Frac.h",
+              "ToolTip": "D:\\C\\code\\test.c\\c\u002B\u002B\\c\u002B\u002B\\Frac.h",
+              "RelativeToolTip": "..\\..\\..\\code\\test.c\\c\u002B\u002B\\c\u002B\u002B\\Frac.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-15T04:55:00.897Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Date.h",
+              "DocumentMoniker": "D:\\C\\code\\test.c\\c\u002B\u002B\\c\u002B\u002B\\Date.h",
+              "RelativeDocumentMoniker": "..\\..\\..\\code\\test.c\\c\u002B\u002B\\c\u002B\u002B\\Date.h",
+              "ToolTip": "D:\\C\\code\\test.c\\c\u002B\u002B\\c\u002B\u002B\\Date.h",
+              "RelativeToolTip": "..\\..\\..\\code\\test.c\\c\u002B\u002B\\c\u002B\u002B\\Date.h",
+              "ViewState": "AQIAADAAAAAAAAAAAAAAAAMAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-15T04:55:01.024Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Fraction.cpp",
+              "DocumentMoniker": "D:\\C\\code\\test.c\\c\u002B\u002B\\c\u002B\u002B\\Fraction.cpp",
+              "RelativeDocumentMoniker": "..\\..\\..\\code\\test.c\\c\u002B\u002B\\c\u002B\u002B\\Fraction.cpp",
+              "ToolTip": "D:\\C\\code\\test.c\\c\u002B\u002B\\c\u002B\u002B\\Fraction.cpp",
+              "RelativeToolTip": "..\\..\\..\\code\\test.c\\c\u002B\u002B\\c\u002B\u002B\\Fraction.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADgAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-03-15T04:55:01.027Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Date.cpp",
+              "DocumentMoniker": "D:\\C\\code\\test.c\\c\u002B\u002B\\c\u002B\u002B\\Date.cpp",
+              "RelativeDocumentMoniker": "..\\..\\..\\code\\test.c\\c\u002B\u002B\\c\u002B\u002B\\Date.cpp",
+              "ToolTip": "D:\\C\\code\\test.c\\c\u002B\u002B\\c\u002B\u002B\\Date.cpp",
+              "RelativeToolTip": "..\\..\\..\\code\\test.c\\c\u002B\u002B\\c\u002B\u002B\\Date.cpp",
+              "ViewState": "AQIAAJwAAAAAAAAAAAAAAEIAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-03-15T04:55:01.028Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "test.cpp",
+              "DocumentMoniker": "D:\\C\\code\\test.c\\c\u002B\u002B\\c\u002B\u002B\\test.cpp",
+              "RelativeDocumentMoniker": "..\\..\\..\\code\\test.c\\c\u002B\u002B\\c\u002B\u002B\\test.cpp",
+              "ToolTip": "D:\\C\\code\\test.c\\c\u002B\u002B\\c\u002B\u002B\\test.cpp",
+              "RelativeToolTip": "..\\..\\..\\code\\test.c\\c\u002B\u002B\\c\u002B\u002B\\test.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-03-15T04:55:01.03Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

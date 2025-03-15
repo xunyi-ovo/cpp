@@ -1,5 +1,0 @@
-﻿  test.cpp
-D:\C\gitee\cpp\vector模拟实现\vector模拟实现\vector.h(151,13): warning C4244: “初始化”: 从“__int64”转换到“int”，可能丢失数据
-D:\C\gitee\cpp\vector模拟实现\vector模拟实现\vector.h(106,19): warning C4244: “return”: 从“__int64”转换到“int”，可能丢失数据
-D:\C\gitee\cpp\vector模拟实现\vector模拟实现\vector.h(102,27): warning C4244: “return”: 从“__int64”转换到“int”，可能丢失数据
-  vector模拟实现.vcxproj -> D:\C\gitee\cpp\vector模拟实现\x64\Debug\vector模拟实现.exe

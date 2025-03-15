@@ -1,9 +1,0 @@
-﻿  string.cpp
-D:\C\gitee\cpp\String底层\String底层\string.cpp(89,22): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
-D:\C\gitee\cpp\String底层\String底层\string.cpp(124,11): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
-D:\C\gitee\cpp\String底层\String底层\string.cpp(156,14): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
-D:\C\gitee\cpp\String底层\String底层\string.cpp(164,11): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
-D:\C\gitee\cpp\String底层\String底层\string.cpp(171,14): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
-D:\C\gitee\cpp\String底层\String底层\string.cpp(192,17): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
-D:\C\gitee\cpp\String底层\String底层\string.cpp(250,15): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
-  String底层.vcxproj -> D:\C\gitee\cpp\String底层\x64\Debug\String底层.exe
