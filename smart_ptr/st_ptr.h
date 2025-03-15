@@ -1,6 +1,8 @@
 using namespace std;
 #include <iostream>
 #include <functional>
+#include<cstdlib>
+#include <unistd.h>
 namespace xy
 {
 

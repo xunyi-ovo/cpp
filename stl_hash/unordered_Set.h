@@ -8,8 +8,8 @@ class unordered_Set{
             return key;
         }
     };
-    typedef hash_iter<K,const K,V&,V*,setkeyOfvalue,hash> iterator;
-    typedef hash_iter<K,const K,const V&,const V*,setkeyOfvalue,hash> const_iterator;
+    typedef hash_iter<K,const K,K&,K*,setkeyOfvalue,hash> iterator;
+    typedef hash_iter<K,const K,const K&,const K*,setkeyOfvalue,hash> const_iterator;
     bool insert(const K& key){
         return _hash_table.Insert(key);
     }

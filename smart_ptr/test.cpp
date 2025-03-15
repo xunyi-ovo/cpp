@@ -1,4 +1,7 @@
 #include "st_ptr.h"
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <string.h>
 using xy::shared_ptr;
 using xy::weak_ptr;
 struct node{
@@ -12,13 +15,21 @@ struct node{
 };
 int main()
 {
-    shared_ptr<node> sp1(new node(1));
-    shared_ptr<node> sp2(new node(2));
-    cout << sp1.use_count() << endl;
-    cout << sp2.use_count() << endl;
-    sp1->_next = sp2;
-    sp2->_prev = sp1;
-    cout << sp1.use_count() << endl;
-    cout << sp2.use_count() << endl;
+    pid_t id = fork();
+    if(id<0){
+        cout << strerror(errno) << endl;
+    }
+    else if(id==0){
+        int cnt = 5;
+        while(cnt--){
+            sleep(1);
+            cout << "I am child process,my id:" << getpid() << endl;
+        }
+    }
+    else{
+        pid_t id = wait(nullptr);
+        cout<<"wait sucess,child id:"<<id<<endl;
+        cout << "I am parent" << endl;
+    }
     return 0;
 }

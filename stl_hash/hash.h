@@ -19,7 +19,7 @@ template<class K,class V,class Ref,class Ptr,class keyOfv,class hash>
 class hash_iter{
     public:
     typedef hashNode<V> node;
-    typedef hash_iter<K,V,keyOfv,hash> Self;
+    typedef hash_iter<K,V,Ref,Ptr,keyOfv,hash> Self;
     typedef hashTable<K,V,keyOfv,hash> Master;
     hash_iter(node*& ps,Master*& pm):
              _pointer(ps)
